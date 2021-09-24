@@ -7,7 +7,7 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
-    origin: 'https://manabako.vercel.app'
+    origin: ['https://manabako.vercel.app', 'https://manabako-cms.vercel.app']
   });
   await app.listen(process.env.PORT ?? 4000);
 }
