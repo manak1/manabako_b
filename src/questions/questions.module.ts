@@ -5,10 +5,11 @@ import { QuestionRepository } from './question.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'src/auth/auth.module';
 import { UserRepository } from 'src/auth/users.repository';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
+  imports: [TypeOrmModule.forFeature([QuestionRepository, UserRepository]), AuthModule, ConfigModule],
   providers: [QuestionsService],
   controllers: [QuestionsController],
-  imports: [TypeOrmModule.forFeature([QuestionRepository, UserRepository]), AuthModule],
 })
 export class QuestionsModule {}
