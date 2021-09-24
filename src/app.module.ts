@@ -5,8 +5,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { QuestionsModule } from './questions/questions.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { Type } from 'class-transformer';
-import { config } from 'rxjs';
 
 @Module({
   imports: [
@@ -18,7 +16,6 @@ import { config } from 'rxjs';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
         const isProduction = configService.get('STAGE') === 'prod'
-
         return {
           ssl: isProduction,
           extra: {
