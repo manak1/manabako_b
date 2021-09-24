@@ -55,4 +55,8 @@ export class QuestionsService {
     if (!target) throw new NotFoundException('指定したidの質問が見つかりませんでした。')
     return target
   }
+
+  async deleteQuestion(id: string) {
+    await this.questionRepository.delete({ id }).catch((error) => { throw error })
+  }
 }

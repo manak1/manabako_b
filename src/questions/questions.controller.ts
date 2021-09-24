@@ -1,9 +1,8 @@
-import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { QuestionsService } from './questions.service';
 import { AuthGuard } from '@nestjs/passport';
 import { ConfigService } from '@nestjs/config';
-
 
 @Controller('questions')
 export class QuestionsController {
@@ -34,6 +33,13 @@ export class QuestionsController {
   @Get(':id')
   getQuestionById(@Param('id') id: string) {
     return this.questionService.getQuestionById(id)
+  }
+
+
+  @Delete(':id')
+  @UseGuards(AuthGuard())
+  deleteQuestionById(@Param('id') id: string) {
+    return this.questionService.deleteQuestion(id)
   }
 
 }
