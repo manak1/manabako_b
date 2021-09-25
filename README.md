@@ -8,7 +8,7 @@ Nest.jsの学習目的で作成しました！
 
 ## 本番環境
 
-https://manabako.vercel.com
+https://manabako.vercel.app
 
 
 ## 製作者
