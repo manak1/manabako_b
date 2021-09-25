@@ -25,6 +25,10 @@ export class QuestionsService {
     return questions
   }
 
+  async getAllQuestions(): Promise<Question[]> {
+    return await this.questionRepository.find()
+  }
+
   async createQuestion(createQuestionDto: CreateQuestionDto) {
     const { message } = createQuestionDto
     const user = await this.userRepository.findOne({ username: 'manaki' }, { relations: ['questions'] })

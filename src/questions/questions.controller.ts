@@ -3,6 +3,7 @@ import { CreateQuestionDto } from './dto/create-question.dto';
 import { QuestionsService } from './questions.service';
 import { AuthGuard } from '@nestjs/passport';
 import { ConfigService } from '@nestjs/config';
+import { User } from 'src/auth/user.entity';
 
 @Controller('questions')
 export class QuestionsController {
@@ -11,6 +12,12 @@ export class QuestionsController {
   @Post()
   createQuestion(@Body() createQuestionDto: CreateQuestionDto) {
     return this.questionService.createQuestion(createQuestionDto)
+  }
+
+  @Get('all')
+  @UseGuards(AuthGuard())
+  getAllQuestions() {
+    return this.questionService.getAllQuestions()
   }
 
   @Get('answered')
